@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cd ~
+
+find Music avlibrary Pictures usr2local cv Downloads archive website active rg_nonncep writing bin -type  f -name .DS_Store -exec rm {} \;
+
+find Music avlibrary Pictures usr2local cv Downloads archive website active rg_nonncep writing bin -type d -exec dirtime {} \;
