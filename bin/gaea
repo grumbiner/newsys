@@ -1,0 +1,7 @@
+#sshg3 +x gaea
+#ssh -Y -l Robert.Grumbine gaea-rsa.rdhpcs.noaa.gov
+if [ $1 == "b" ] ; then
+  ssh -Y -l Robert.Grumbine gaea-rsa.boulder.rdhpcs.noaa.gov
+else
+  ssh -Y -l Robert.Grumbine gaea-rsa.princeton.rdhpcs.noaa.gov
+fi

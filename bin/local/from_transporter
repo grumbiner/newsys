@@ -1,0 +1,31 @@
+#!/bin/sh
+
+if [ -d /Volumes/Mac_Transport/transfer/ ] ; then
+  export other=/Volumes/Mac_Transport/transfer/
+elif [ -d /Volumes/Transporter1/transfer/ ] ; then
+  export other=/Volumes/Transporter1/transfer/
+else
+  echo could not find a transporter disk
+fi
+
+cd $other
+if [ $# -eq 1 ] ; then
+  if [ $1 == "real" ] ; then
+    echo really copying from external disk to your system, ctl-C to flee
+    sleep 15
+  fi
+fi
+
+for odir in bin writing rg_nonncep active usr2local cv archive avlibrary website 
+do
+  x=`topdirs -m $odir`
+  echo $x Mb in dir $odir
+
+  if [ $# -eq 0 ] ; then
+    rsync -n -rHptv --delete  ${other}/$odir/ ~/$odir/ 
+    else
+      if [ $1 == "real" ] ; then
+        rsync -rHptv --delete  ${other}/$odir/ ~/$odir/ 
+      fi
+  fi
+done
